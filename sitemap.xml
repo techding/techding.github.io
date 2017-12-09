@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://dingsanwen.github.io/2017/acer-install-ubuntu/</loc>
+    <loc>http://dingsanwen.github.io/2017/music-recommendation/</loc>
     
-    <lastmod>2017-11-26T12:34:42.057Z</lastmod>
+    <lastmod>2017-12-09T14:15:41.995Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://dingsanwen.github.io/about/index.html</loc>
     
-    <lastmod>2017-11-26T11:58:05.501Z</lastmod>
+    <lastmod>2017-12-09T14:11:51.858Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://dingsanwen.github.io/2017/acer-install-ubuntu/</loc>
+    
+    <lastmod>2017-12-09T12:27:38.034Z</lastmod>
     
   </url>
   
@@ -54,13 +61,6 @@
     <loc>http://dingsanwen.github.io/2017/web-basics-3-bootstrap/</loc>
     
     <lastmod>2017-11-18T12:57:12.756Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://dingsanwen.github.io/2017/risks-of-philosophy/</loc>
-    
-    <lastmod>2017-10-15T02:40:50.872Z</lastmod>
     
   </url>
   
