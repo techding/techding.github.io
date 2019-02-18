@@ -1,0 +1,33 @@
+body {
+	border: 20px solid #bdc3c7;
+	max-width: 800px;
+	width: 80%;
+	margin: 20px auto;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 500;
+	padding: 20px;
+}
+
+.date {
+	text-transform: uppercase;
+	color: #3498db;
+	letter-spacing: 0.2rem;
+	/*rem 是与根元素 HTML 相比*/
+}
+
+h2 {
+	color: #2c3e50;
+	font-size: 2.0rem; 
+}
+
+.para {
+	border-left: 6px solid #bdc3c7;
+	padding-left: 6px; 
+}
+
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
