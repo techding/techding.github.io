@@ -1,0 +1,763 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="公开课," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="原文地址 15-213 Intro to Computer Systems: Code Style  代码的可读性与代码的功能一样重要。因此，在 15 - 213 （和你上的其他的 CS 课程一样），我们会密切关注你的代码风格并将其作为影响成绩的一个因素。“什么才是好的代码风格”是一个每学期都会出现的问题。为了尝试解答这个问题，这门课的教职员工创建了这个文档。最基本的要求是代码要一致并且有逻辑，">
+<meta name="keywords" content="公开课">
+<meta property="og:type" content="article">
+<meta property="og:title" content="15213 代码风格（翻译）">
+<meta property="og:url" content="http://techding.github.io/2017/15213-code-style/index.html">
+<meta property="og:site_name" content="techding">
+<meta property="og:description" content="原文地址 15-213 Intro to Computer Systems: Code Style  代码的可读性与代码的功能一样重要。因此，在 15 - 213 （和你上的其他的 CS 课程一样），我们会密切关注你的代码风格并将其作为影响成绩的一个因素。“什么才是好的代码风格”是一个每学期都会出现的问题。为了尝试解答这个问题，这门课的教职员工创建了这个文档。最基本的要求是代码要一致并且有逻辑，">
+<meta property="og:updated_time" content="2017-12-22T01:56:11.287Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="15213 代码风格（翻译）">
+<meta name="twitter:description" content="原文地址 15-213 Intro to Computer Systems: Code Style  代码的可读性与代码的功能一样重要。因此，在 15 - 213 （和你上的其他的 CS 课程一样），我们会密切关注你的代码风格并将其作为影响成绩的一个因素。“什么才是好的代码风格”是一个每学期都会出现的问题。为了尝试解答这个问题，这门课的教职员工创建了这个文档。最基本的要求是代码要一致并且有逻辑，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://techding.github.io/2017/15213-code-style/"/>
+
+
+
+
+
+  <title>15213 代码风格（翻译） | techding</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">techding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://techding.github.io/2017/15213-code-style/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="techding">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="techding">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">15213 代码风格（翻译）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-21T20:45:00+08:00">
+                2017-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/15213-code-style/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/15213-code-style/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原文地址 <a href="http://www.cs.cmu.edu/afs/cs/academic/class/15213-f15/www/codeStyle.html" target="_blank" rel="external">15-213 Intro to Computer Systems: Code Style</a></p>
+</blockquote>
+<p>代码的可读性与代码的功能一样重要。因此，在 15 - 213 （和你上的其他的 CS 课程一样），我们会密切关注你的代码风格并将其作为影响成绩的一个因素。<br>“什么才是好的代码风格”是一个每学期都会出现的问题。为了尝试解答这个问题，这门课的教职员工创建了这个文档。最基本的要求是代码要一致并且有逻辑，使读者清楚地知道你的代码的目的。我们希望你的代码风格具有良好的可读性和合理性，并且在整个的工程中都坚持这样的风格。我们将关注的关键点如下：<br><a id="more"></a></p>
+<h4 id="良好的注释文档"><a href="#良好的注释文档" class="headerlink" title="良好的注释文档"></a>良好的注释文档</h4><p>好的代码大部分应该能够 <strong>自我描述</strong> ：变量名和函数名应该大致上能够反映你想做什么。注释不应该描述代码做了什么，而是描述为什么是这样；代码做了什么应该是自明的。（当你考虑什么是自明时，假设读者比你更加了解 C 语言。）<br>一般来说代码值得注释的地方有：</p>
+<ul>
+<li>文件的头部：每个文件都应该包含描述本文件的目的和在整个工程中的作用的注释。你也可以把你的姓名和邮箱放在这里。</li>
+<li>函数的头部：每个函数前应该有一两句话描述这个函数的作用，<strong>实际参数</strong> 和返回值，所有与调用者有关的错误情况，所有相关的 <strong>副作用</strong> 和所有本函数做出的假设。</li>
+<li>长代码块：如果一个代码块特别长，在其上方写一些注释能帮助读者了解他们要读的代码是什么，这样如果这段代码与他们无关他们就可以跳过。</li>
+<li>不易读懂的代码：如果不容易使一段代码做到自明，加一些描述代码做了什么的注释是可以接受的。特别是 <strong>指针算数运算</strong> 经常需要解释性的注释。</li>
+</ul>
+<h4 id="合理使用空格"><a href="#合理使用空格" class="headerlink" title="合理使用空格"></a>合理使用空格</h4><p>合理使用空格能够极大地增加代码的可读性。每次你开始一段行的代码块（一个函数，“if” 语句，“for”或“while”循环等），都应该增加一个缩排等级。<br>你可以使用自己的缩排风格，但是必须一致：如果你使用四个空格来缩排，就不应该再使用 tab 键。我们不推荐你使用 tab 键，而是推荐只使用空格来缩排。（如果你在配置编辑器使其缩排一致时需要帮助，你可以随时向教职员工寻求帮助。）</p>
+<h4 id="一行代码的长度"><a href="#一行代码的长度" class="headerlink" title="一行代码的长度"></a>一行代码的长度</h4><p>尽管一行代码的长度有许多标准，我们要求它不超过 80 个字符，这样我们能能够便利地查看和打印你的代码。想要快速检查 file.c 没有超过 80 个字符，你可以运行 “wc -L file.c” 得到它的最大行长度。</p>
+<h4 id="合理的变量名"><a href="#合理的变量名" class="headerlink" title="合理的变量名"></a>合理的变量名</h4><p>变量名应该是对变量所存值得描述。目的自明的局部变量（如循环计数器或数组索引）可以命名为单个字母。<strong>形式参数</strong> 可以是一个（合理选择的）单词。全局变量可能应该为两个或以上的单词。</p>
+<h4 id="魔法数字"><a href="#魔法数字" class="headerlink" title="魔法数字"></a>魔法数字</h4><p>魔法数字是你的代码中具有除自身值以外的含义的数字。例如，如果你用 “fgets(stdin, buf, 256)” 来读取数据到一个缓冲区，那么 256 就是一个“魔法数字”，因为他表示了缓冲区的长度。另一方面，当你用”for(int i = 0, i &lt; MAX, i += 2)” 来以偶数计数时时，2 不是一个魔法数字，因为它仅表示你每次加了 2。<br>你应该使用 #define 来阐明魔法数字的含义。在上面的例子中，你应该做 “#define BUFLEN 256” 并且在“buf”的声明和“fgets”的调用中使用“BUFLEN”常数。</p>
+<h4 id="不要“死代码”"><a href="#不要“死代码”" class="headerlink" title="不要“死代码”"></a>不要“死代码”</h4><p>“死代码”指的是不论在正常或异常情况下，程序运行时都不会执行的代码。它们包括调试时使用的但是注释了的“printf”语句。你提交的程序不应该有“死代码”。</p>
+<h4 id="程序的模块性"><a href="#程序的模块性" class="headerlink" title="程序的模块性"></a>程序的模块性</h4><p>你应该努力使你的代码模块化。在一个较低的层面上，这意味着你不应该重复可以被提取出来组成一个新的函数的代码块，并且如果可能，执行多个任务的较长的函数应该被分成几个子函数。在一个较高的层面上，这意味着执行不同功能的代码应该被分隔成不同的模块；例如，如果你的代码需要用散列表，那么（直接）操作散列表的代码应该与使用散列表的代码分隔开，并且散列表的访问应该只能通过几个精心选择的函数来进行。</p>
+<h4 id="失败条件-错误检查"><a href="#失败条件-错误检查" class="headerlink" title="失败条件 / 错误检查"></a>失败条件 / 错误检查</h4><p>写代码时，我们通常只考虑成功的情况。考虑失败的情况也同样重要。有很多情况能使你的程序出错：用户的输入不符合你预期的格式，malloc 可能返回 NULL，用户输入的文件名可能不存在，用户指明了一个文件但是没有访问权限，磁盘可能已满，可能会没有网络……还有很多其他的情况。思考你的程序如何能够解决这些错误或者当不能解决时如何展示给用户是很重要的。例如，如果 ，malloc 在你的程序的关键位置出错，可能你只能打印出致命错误信息然后退出。但是如果用户在一个交互程序中指明了一个无效的文件，告诉用户它们输入的文件名是无效的并且给他们纠正错误的机会是更好的。<br>特别是，网络服务器（你也将会在 15 - 410 操作系统中学到）需要格外 <strong>强健</strong>。不论一个 <strong>用例</strong> （或过程）尝试做什么，你的服务器（或内核）都不应该崩溃。这些情况下的错误处理更困难一些，因为你确保用例端看来致命的错误不会停止服务器的进程。</p>
+<h4 id="合理的内存和文件处理"><a href="#合理的内存和文件处理" class="headerlink" title="合理的内存和文件处理"></a>合理的内存和文件处理</h4><p>如果你分配了内存（malloc，calloc），你应该在使用过后释放它。你的程序不应该造成 <strong>内存泄漏</strong>。文件的关闭是很重要的，特别是对于输出文件。原因是输出通常被缓冲。</p>
+<h4 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h4><p>次风格指南故意给你留下了许多选择的机会（例如，大括号应该放哪，单行“if”语句是否合理，每一级应该缩排多少）。不论你做什么选择，你都应该做到一致。无规律的风格改变最使你的读者分心了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/公开课/" rel="tag"># 公开课</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/music-recommendation/" rel="next" title="戴上耳机听什么">
+                <i class="fa fa-chevron-left"></i> 戴上耳机听什么
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/why-hermione-likes-ron/" rel="prev" title="为什么赫敏喜欢罗恩（翻译）">
+                为什么赫敏喜欢罗恩（翻译） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="techding" />
+          <p class="site-author-name" itemprop="name">techding</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#良好的注释文档"><span class="nav-number">1.</span> <span class="nav-text">良好的注释文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合理使用空格"><span class="nav-number">2.</span> <span class="nav-text">合理使用空格</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一行代码的长度"><span class="nav-number">3.</span> <span class="nav-text">一行代码的长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合理的变量名"><span class="nav-number">4.</span> <span class="nav-text">合理的变量名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#魔法数字"><span class="nav-number">5.</span> <span class="nav-text">魔法数字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要“死代码”"><span class="nav-number">6.</span> <span class="nav-text">不要“死代码”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#程序的模块性"><span class="nav-number">7.</span> <span class="nav-text">程序的模块性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#失败条件-错误检查"><span class="nav-number">8.</span> <span class="nav-text">失败条件 / 错误检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合理的内存和文件处理"><span class="nav-number">9.</span> <span class="nav-text">合理的内存和文件处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一致性"><span class="nav-number">10.</span> <span class="nav-text">一致性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">techding</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://dingsanwen.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://techding.github.io/2017/15213-code-style/';
+          this.page.identifier = '2017/15213-code-style/';
+          this.page.title = '15213 代码风格（翻译）';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://dingsanwen.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
