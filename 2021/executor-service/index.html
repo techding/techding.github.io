@@ -1,0 +1,773 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Java ExecutorService  例子 123456789ExecutorService executorService = Executors.newFixedThreadPool(10);executorService.execute(new Runnable() &amp;#123;    public void run() &amp;#123;        System.out.println">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java ExecutorService">
+<meta property="og:url" content="http://techding.github.io/2021/executor-service/index.html">
+<meta property="og:site_name" content="techding">
+<meta property="og:description" content="Java ExecutorService  例子 123456789ExecutorService executorService = Executors.newFixedThreadPool(10);executorService.execute(new Runnable() &amp;#123;    public void run() &amp;#123;        System.out.println">
+<meta property="og:updated_time" content="2021-09-04T04:19:58.346Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java ExecutorService">
+<meta name="twitter:description" content="Java ExecutorService  例子 123456789ExecutorService executorService = Executors.newFixedThreadPool(10);executorService.execute(new Runnable() &amp;#123;    public void run() &amp;#123;        System.out.println">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://techding.github.io/2021/executor-service/"/>
+
+
+
+
+
+  <title>Java ExecutorService | techding</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">techding</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://techding.github.io/2021/executor-service/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="techding">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="techding">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java ExecutorService</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-05T19:44:30+08:00">
+                2021-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/executor-service/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2021/executor-service/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Java ExecutorService  例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ExecutorService executorService = Executors.newFixedThreadPool(10);</div><div class="line"></div><div class="line">executorService.execute(new Runnable() &#123;</div><div class="line">    public void run() &#123;</div><div class="line">        System.out.println(&quot;Asynchronous task&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">executorService.shutdown();</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>这个例子创建了一个有十个线程的线程池。</p>
+<p>ExecutorService是一个接口，在J.U.C下有两种实现，ThreadPoolExecutor和ScheduledThreadPoolExecutor。</p>
+<p>将任务交给线程池执行的方法有</p>
+<ul>
+<li>execute(Runnable)</li>
+<li>submit(Runnable)</li>
+<li>submit(Callable)</li>
+<li>invokeAny(…)</li>
+<li>invokeAll(…)</li>
+</ul>
+<h3 id="Execute-Runnable"><a href="#Execute-Runnable" class="headerlink" title="Execute Runnable"></a>Execute Runnable</h3><p>Java <code>ExecutorService</code> <code>execute(Runnable)</code> 方法接收 <code>java.lang.Runnable</code> 对象, 以下是一个 用 <code>ExecutorService</code>执行 <code>Runnable</code>的例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();</div><div class="line"></div><div class="line">executorService.execute(new Runnable() &#123;</div><div class="line">    public void run() &#123;</div><div class="line">        System.out.println(&quot;Asynchronous task&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">executorService.shutdown();</div></pre></td></tr></table></figure>
+<p>execute无法获得Runnable的执行结果，想得到执行结果的话我们需要Callable</p>
+<h3 id="Submit-Runnable"><a href="#Submit-Runnable" class="headerlink" title="Submit Runnable"></a>Submit Runnable</h3><p> <code>ExecutorService</code> <code>submit(Runnable)</code> 方法也接受一个 <code>Runnable</code> 对象, 但是会返回一个 <code>Future</code> 对象。  <code>Future</code> 对象可以用来检查 <code>Runnable</code> 是否执行结束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Future future = executorService.submit(new Runnable() &#123;</div><div class="line">    public void run() &#123;</div><div class="line">        System.out.println(&quot;Asynchronous task&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">future.get();  //returns null if the task has finished correctly.</div></pre></td></tr></table></figure>
+<h3 id="Submit-Callable"><a href="#Submit-Callable" class="headerlink" title="Submit Callable"></a>Submit Callable</h3><p> <code>ExecutorService</code> <code>submit(Callable)</code> 方法和 <code>submit(Runnable)</code> 方法类似，也会返回一个 <code>Future</code> 对象，里面有Callable run方法的返回值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Future future = executorService.submit(new Callable()&#123;</div><div class="line">    public Object call() throws Exception &#123;</div><div class="line">        System.out.println(&quot;Asynchronous Callable&quot;);</div><div class="line">        return &quot;Callable Result&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">System.out.println(&quot;future.get() = &quot; + future.get());</div></pre></td></tr></table></figure>
+<p>代码会输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Asynchronous Callable</div><div class="line">future.get() = Callable Result</div></pre></td></tr></table></figure>
+<h3 id="invokeAny"><a href="#invokeAny" class="headerlink" title="invokeAny()"></a>invokeAny()</h3><p> <code>invokeAny()</code> 方法接受 <code>Callable</code> 集合。 调用这个方法不会返回 <code>Future</code>, 而是其中一个 <code>Callable</code> 的执行结果。 并且不能保证是哪一个 <code>Callable</code>的结果。</p>
+<p>只要有一个Callable执行结束, 这个结果就会被 <code>invokeAny()</code>返回, 并且剩余的Callable被取消。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();</div><div class="line"></div><div class="line">Set&lt;Callable&lt;String&gt;&gt; callables = new HashSet&lt;Callable&lt;String&gt;&gt;();</div><div class="line"></div><div class="line">callables.add(new Callable&lt;String&gt;() &#123;</div><div class="line">    public String call() throws Exception &#123;</div><div class="line">        return &quot;Task 1&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">callables.add(new Callable&lt;String&gt;() &#123;</div><div class="line">    public String call() throws Exception &#123;</div><div class="line">        return &quot;Task 2&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">callables.add(new Callable&lt;String&gt;() &#123;</div><div class="line">    public String call() throws Exception &#123;</div><div class="line">        return &quot;Task 3&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">String result = executorService.invokeAny(callables);</div><div class="line"></div><div class="line">System.out.println(&quot;result = &quot; + result);</div><div class="line"></div><div class="line">executorService.shutdown();</div></pre></td></tr></table></figure>
+<p>每次执行这段代码打印出来的结果都可能不一样，有时是 “Task 1”, 有时是 “Task 2” 。</p>
+<h3 id="invokeAll"><a href="#invokeAll" class="headerlink" title="invokeAll()"></a>invokeAll()</h3><p> <code>invokeAll()</code> 方法会执行集合中的所有 <code>Callable</code> 对象，然后返回一个<code>Future</code> list</p>
+<p>任务抛出异常也是执行结束，Future无法区分正常结束和异常结束。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">ExecutorService executorService = Executors.newSingleThreadExecutor();</div><div class="line"></div><div class="line">Set&lt;Callable&lt;String&gt;&gt; callables = new HashSet&lt;Callable&lt;String&gt;&gt;();</div><div class="line"></div><div class="line">callables.add(new Callable&lt;String&gt;() &#123;</div><div class="line">    public String call() throws Exception &#123;</div><div class="line">        return &quot;Task 1&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">callables.add(new Callable&lt;String&gt;() &#123;</div><div class="line">    public String call() throws Exception &#123;</div><div class="line">        return &quot;Task 2&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line">callables.add(new Callable&lt;String&gt;() &#123;</div><div class="line">    public String call() throws Exception &#123;</div><div class="line">        return &quot;Task 3&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">List&lt;Future&lt;String&gt;&gt; futures = executorService.invokeAll(callables);</div><div class="line"></div><div class="line">for(Future&lt;String&gt; future : futures)&#123;</div><div class="line">    System.out.println(&quot;future.get = &quot; + future.get());</div><div class="line">&#125;</div><div class="line"></div><div class="line">executorService.shutdown();</div></pre></td></tr></table></figure>
+<h3 id="Runnable-vs-Callable"><a href="#Runnable-vs-Callable" class="headerlink" title="Runnable vs. Callable"></a>Runnable vs. Callable</h3><p>Runnable 代表一个可以被一个线程或者ExecutorService 执行的任务。而Callable只能被ExecutorService执行。另外一个区别是Runnable没有返回值，Callable有返回值。这丛接口声明可以看出来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Runnable &#123;</div><div class="line">    public void run();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public interface Callable&#123;</div><div class="line">    public Object call() throws Exception;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="取消一个任务"><a href="#取消一个任务" class="headerlink" title="取消一个任务"></a>取消一个任务</h3><p>当一个任务还没有被执行的时候，通过调用Future的Cancel()方法可以取消这个任务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">future.cancel();</div></pre></td></tr></table></figure>
+<h3 id="关闭-ExecutorService"><a href="#关闭-ExecutorService" class="headerlink" title="关闭 ExecutorService"></a>关闭 ExecutorService</h3><p>为了让线程池中的线程不再执行，当我们使用完ExecutorService后，应该将其关闭。如果应用是通过main（）方法启动的，当主线程退出后，如果线程池中还有活跃的线程，那么这些线程会继续执行，所以我们应该将线程池关闭。</p>
+<h3 id="shutdown"><a href="#shutdown" class="headerlink" title="shutdown()"></a>shutdown()</h3><p>调用shutdown()方法可以关闭线程池，ExecutorService不会立即关闭，但不会接受新的任务，当所有的线程都执行完当前的任务后，ExecutorService关闭。所有在调用shutdown()之前提交的任务都会被执行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">executorService.shutdown();</div></pre></td></tr></table></figure>
+<h3 id="shutdownNow"><a href="#shutdownNow" class="headerlink" title="shutdownNow()"></a>shutdownNow()</h3><p>如果想要 <code>ExecutorService</code> 立即关闭, 可以调用 <code>shutdownNow()</code> 方法。 这个方法会立即尝试停止所有在执行的任务，并且跳过已提交但未执行的任务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">executorService.shutdownNow();</div></pre></td></tr></table></figure>
+<h3 id="awaitTermination"><a href="#awaitTermination" class="headerlink" title="awaitTermination()"></a>awaitTermination()</h3><p> <code>ExecutorService</code> <code>awaitTermination()</code> 会阻塞嗲用这个方法的线程直到 <code>ExecutorService</code> 完全关闭, 或者超过给定的时间。通常在调用 <code>shutdown()</code> 或者 <code>shutdownNow()</code>之后调用<code>awaitTermination()</code> 方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">executorService.shutdown();</div><div class="line"></div><div class="line">executorService.awaitTermination(10_000L, TimeUnit.MILLISECONDS );</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/ens-ipfs-fleek/" rel="next" title="ENS, IPFS, Fleek">
+                <i class="fa fa-chevron-left"></i> ENS, IPFS, Fleek
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="techding" />
+          <p class="site-author-name" itemprop="name">techding</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Execute-Runnable"><span class="nav-number">1.</span> <span class="nav-text">Execute Runnable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Submit-Runnable"><span class="nav-number">2.</span> <span class="nav-text">Submit Runnable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Submit-Callable"><span class="nav-number">3.</span> <span class="nav-text">Submit Callable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#invokeAny"><span class="nav-number">4.</span> <span class="nav-text">invokeAny()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#invokeAll"><span class="nav-number">5.</span> <span class="nav-text">invokeAll()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Runnable-vs-Callable"><span class="nav-number">6.</span> <span class="nav-text">Runnable vs. Callable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消一个任务"><span class="nav-number">7.</span> <span class="nav-text">取消一个任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭-ExecutorService"><span class="nav-number">8.</span> <span class="nav-text">关闭 ExecutorService</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shutdown"><span class="nav-number">9.</span> <span class="nav-text">shutdown()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shutdownNow"><span class="nav-number">10.</span> <span class="nav-text">shutdownNow()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#awaitTermination"><span class="nav-number">11.</span> <span class="nav-text">awaitTermination()</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">techding</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://dingsanwen.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://techding.github.io/2021/executor-service/';
+          this.page.identifier = '2021/executor-service/';
+          this.page.title = 'Java ExecutorService';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://dingsanwen.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

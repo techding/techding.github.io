@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://techding.github.io/2021/executor-service/</loc>
+    
+    <lastmod>2021-09-04T04:19:58.346Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://techding.github.io/2021/ens-ipfs-fleek/</loc>
     
     <lastmod>2021-08-01T08:48:14.685Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://techding.github.io/2019/web-basics-2-css/</loc>
     
     <lastmod>2021-08-01T07:39:40.529Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://techding.github.io/2019/web-basics-1-html/</loc>
-    
-    <lastmod>2021-08-01T07:39:22.038Z</lastmod>
     
   </url>
   
